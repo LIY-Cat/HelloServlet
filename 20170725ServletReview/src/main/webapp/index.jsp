@@ -11,6 +11,7 @@
 <form action="first" method="get">
 	<input type="submit" value="이동">
 </form>
-
+<%-- <%= application.getMajorVersion() %>.<%= application.getMinorVersion() %> --%>
+<%--web.xml 오류나서 서블릿 버전 확인용 --%>
 </body>
 </html>
