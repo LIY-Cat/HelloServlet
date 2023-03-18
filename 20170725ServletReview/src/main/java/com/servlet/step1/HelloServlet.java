@@ -3,6 +3,7 @@
 package com.servlet.step1;
 
 import java.io.IOException;
+//import java.io.PrintWriter;//주석 처리해놔서 주의가 뜸.
 import java.util.Date;
 
 import javax.servlet.ServletException;
