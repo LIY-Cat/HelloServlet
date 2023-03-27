@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> Welcom!!! ^^</h1>
+<form action="first" method="get">
+	<input type="submit" value="이동">
+</form>
+<%-- <%= application.getMajorVersion() %>.<%= application.getMinorVersion() %> --%>
+<%--web.xml 오류나서 서블릿 버전 확인용 --%>
+</body>
+</html>
