@@ -12,18 +12,18 @@
 	</context:component-scan>
 	
 	<!-- Before Advice 예 -->
-  	<bean id="before" class="com.springbook.biz.common.BeforeAdvice"></bean>
+<!--   	<bean id="before" class="com.springbook.biz.common.BeforeAdvice"></bean>
 	<aop:config>			   
 		<aop:pointcut id="allPointcut"
 			expression="execution(* com.springbook.biz..*Impl.*(..))" />
 		<aop:aspect ref="before">
 			<aop:before pointcut-ref="allPointcut" method="beforeLog" />
 		</aop:aspect>			
-	</aop:config>	 
+	</aop:config> -->	 
 	
 	<!-- After Returning Advice 예 -->
 	 
-<!-- 	<bean id="afterReturning" class="com.springbook.biz.common.AfterReturningAdvice"></bean>		
+	<bean id="afterReturning" class="com.springbook.biz.common.AfterReturningAdvice"></bean>		
 	<aop:config>
 		<aop:pointcut id="getPointcut"
 			expression="execution(* com.springbook.biz..*Impl.get*(..))" />
@@ -31,7 +31,7 @@
 		<aop:aspect ref="afterReturning">
 			<aop:after-returning pointcut-ref="getPointcut" method="afterLog" />
 		</aop:aspect>
-	</aop:config> -->
+	</aop:config>
 	
 	 
 	<!-- After Throwing Advice 예  --> 
@@ -60,7 +60,7 @@
 		<aop:aspect ref="after">
 			<aop:after pointcut-ref="allPointcut" method="finallyLog" />
 		</aop:aspect>		
-	</aop:config>	 --> 
+	</aop:config> -->	 
 	
 	 
 	<!-- Around Advice 예  --> 

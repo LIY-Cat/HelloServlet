@@ -14,7 +14,7 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO boardDAO;
 
 	public void insertBoard(BoardVO vo) {
-		boardDAO.insertBoard(vo); 
+		boardDAO.insertBoard(vo);
 	}
 
 	public void updateBoard(BoardVO vo) {
