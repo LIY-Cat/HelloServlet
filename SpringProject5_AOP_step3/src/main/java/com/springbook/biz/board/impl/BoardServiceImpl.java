@@ -15,12 +15,12 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO boardDAO;
 	
 	public void insertBoard(BoardVO vo) {
-		//After Throwing Advice 실습에서 예외가 필요해 삽입함.
+		//After Throwing Advice �떎�뒿�뿉�꽌 �삁�쇅媛� �븘�슂�빐 �궫�엯�븿.
 		
-		/*
-		 * if(vo.getSeq() == 0) { throw new
-		 * IllegalArgumentException("0번 글은 등록할 수 없습니다. "); }
-		 */		  
+		
+		  if(vo.getSeq() == 0) { throw new
+		  IllegalArgumentException("0踰� 湲��� �벑濡앺븷 �닔 �뾾�뒿�땲�떎. "); }
+		 		  
 		 		 		 		
 		boardDAO.insertBoard(vo); 
 	}
