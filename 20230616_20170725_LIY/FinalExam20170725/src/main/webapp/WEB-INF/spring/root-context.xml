@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 에러!! 추가 안하면은 6월 16, 2023 8:06:57 오전 org.apache.catalina.core.StandardContext listenerStart
+SEVERE: Context initialized 이벤트를 [org.springframework.web.context.ContextLoaderListener] 클래스의 인스턴스인 리스너에 전송하는 동안 예외 발생
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardDAOMybatis': Unsatisfied dependency expressed through field 'mybatis'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.mybatis.spring.SqlSessionTemplate' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}  -->
+	<!-- !Origin 서버가 대상 리소스를 위한 현재의 representation을 찾지 못했거나, 그것이 존재하는지를 밝히려 하지 않습니다. -->
+	<!-- >>코드를 이론에 맞게 다 수정을 하면은 고쳐진다. 거의 끝에 오고나서 알았다..ㅠㅠ -->
+	<context:component-scan base-package="com.myApp.biz" />
+	
+	<!-- 무슨오류인지 몰라서 다 해제 -->
+	<!-- DataSource 설정 -->
+	<context:property-placeholder location="classpath:config/database.properties" />
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+		<!-- Spring과 Mybatis 연동 설정 -->
+		<!-- 어이!! 네임스페이스 추가 에러가 안뜸!!? -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:sql-map-config.xml"/>
+	</bean>
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession"></constructor-arg>
+	</bean>
+	
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<!--모든 트랜젝션관리자는 PlatformTransactionManager인터페이스 구현한 클래스들  -->
+	 <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	    <property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+<!-- 	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+	     <aop:pointcut id="txPointcut" expression="execution(* com.springbook.biz..*(..))"/>
+	     <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
+	</aop:config> -->
+	
+	<tx:annotation-driven/>
+		
+</beans>

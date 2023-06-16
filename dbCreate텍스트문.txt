@@ -1,0 +1,29 @@
+﻿CREATE DATABASE `finaltestdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+use finaltestdb; 
+
+CREATE TABLE `members` (
+  `id` varchar(45) NOT NULL,
+  `passwd` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `kind` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `finaltestdb`.`question` (
+  `number` INT NOT NULL,
+  `question` VARCHAR(45) NULL,
+  `ex1` VARCHAR(45) NULL,
+  `ex2` VARCHAR(45) NULL,
+  `ex3` VARCHAR(45) NULL,
+  `ex4` VARCHAR(45) NULL,
+  `answer` VARCHAR(45) NULL,
+  PRIMARY KEY (`number`));
+
+
+INSERT INTO `finaltestdb`.`question` (`number`, `question`, `ex1`, `ex2`, `ex3`, `ex4`, `answer`) VALUES ('1', '우리나라이름은?', '일본', '중국', '미국', '한국', '4');
+
+INSERT INTO `finaltestdb`.`question` (`number`, `question`, `ex1`, `ex2`, `ex3`, `ex4`, `answer`) VALUES ('2', '우리 학교는?', '동양미래대', '국지대', '서양대', '인국대', '1');
+
+INSERT INTO `finaltestdb`.`question` (`number`, `question`, `ex1`, `ex2`, `ex3`, `ex4`, `answer`) VALUES ('3', 'your name?', '민우', '용미', '인자', '효리', '2');
