@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserDAO">
+	<select id="getUser" resultType="user"><!-- 여기 에러는 sql_map 설정파일을 안했거나 네임스페이스 잘못-->
+	<!-- 쿼리참조는 UserDAO, 테이블이름 -->
+		select * from users where id=#{id} and password=#{password}
+	</select>
+	<insert id="insertUser"><!-- 아이디 변경해라!! 그리고 테이블 이름도!! -->
+		insert into users(id, password, name, role)
+		values(#{id},#{password},#{name},#{role})
+	</insert>
+</mapper>
